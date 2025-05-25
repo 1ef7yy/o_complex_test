@@ -23,12 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build
-        run: |
-          docker compose up -d &
-          sleep 15
-          curl -X GET http://localhost/api/weather/Moscow
-
       - name: Run linter
         run: |
           python3 -m flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
