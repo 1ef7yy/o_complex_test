@@ -29,7 +29,9 @@ async def get_weather_data(city: str) -> WeatherData:
 async def geocode(city: str) -> Coordinates:
     async with httpx.AsyncClient() as client:
         params = {"city": city, "format": "json"}
-        response = await client.get(f"{GEOCODING_API_URL}/search", params=params)
+        response = await client.get(
+            f"{GEOCODING_API_URL}/search", params=params
+        )
 
         if response.status_code == 200 and response.json():
             data = response.json()[0]
