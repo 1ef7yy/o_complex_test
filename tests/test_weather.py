@@ -9,7 +9,9 @@ async def test_get_weather_data_integration():
     assert data is not None
     assert isinstance(data, WeatherData)
     assert data.temperature is not None
-    assert data.description is not None
+    assert data.wind_speed is not None
+    assert data.relative_humidity is not None
+    assert data.weather_code is not None
 
 
 @pytest.mark.asyncio

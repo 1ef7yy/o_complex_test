@@ -4,10 +4,17 @@ from app.schemas import WeatherData, Coordinates
 
 @pytest.mark.filterwarnings
 def test_weather_data():
-    data = WeatherData(temperature=[10, 20, 30], description="Sunny")
+    data = WeatherData(
+        temperature=[10, 20, 30],
+        wind_speed=[5.1, 2, 3.5],
+        relative_humidity=[5, 2, 3],
+        weather_code=[0, 1, 5],
+    )
     assert isinstance(data, WeatherData)
     assert data.temperature == [10, 20, 30]
-    assert data.description == "Sunny"
+    assert data.wind_speed == [5.1, 2, 3.5]
+    assert data.relative_humidity == [5, 2, 3]
+    assert data.weather_code == [0, 1, 5]
 
 
 @pytest.mark.filterwarnings
