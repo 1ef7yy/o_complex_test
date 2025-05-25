@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 class WeatherData(BaseModel):
     """Данные о погоде"""
+
     temperature: list[float]
     description: str
 
