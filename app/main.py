@@ -18,6 +18,7 @@ app.add_middleware(
 @app.get("/api/weather/{city}")
 async def getWeather(city: str) -> WeatherData:
     data = await get_weather_data(city)
+    print(data)
     if data is None:
         raise HTTPException(status_code=404)
 

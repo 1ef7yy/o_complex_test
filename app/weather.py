@@ -13,15 +13,21 @@ async def get_weather_data(city: str) -> WeatherData:
         params = {
             "latitude": coords.latitude,
             "longitude": coords.longitude,
-            "hourly": "temperature_2m",
+            "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,\
+weather_code",
         }
         response = await client.get(f"{WEATHER_API_URL}", params=params)
 
+        print(response.url)
         if response.status_code == 200 and response.json():
             data = response.json()
             return WeatherData(
-                temperature=data["hourly"]["temperature_2m"], description=""
+                temperature=data["hourly"]["temperature_2m"],
+                relative_humidity=data["hourly"]["relative_humidity_2m"],
+                wind_speed=data["hourly"]["wind_speed_10m"],
+                weather_code=data["hourly"]["weather_code"]
             )
+        print(response.status_code)
 
         return None
 
