@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Погодное приложение</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Прогноз погоды</h1>
+
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Введите название города">
+            <button onclick="getWeather()">Поиск</button>
+        </div>
+
+        <div id="weatherResult"></div>
+
+        <div class="history">
+            <h3>История запросов</h3>
+            <div id="searchHistory"></div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
+</html>

@@ -41,6 +41,7 @@ async def geocode(city: str) -> Coordinates:
 
         if response.status_code == 200 and response.json():
             data = response.json()[0]
+            print(data)
             return Coordinates(
                 name=data["name"],
                 latitude=data["lat"],

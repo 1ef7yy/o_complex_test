@@ -1,25 +1,25 @@
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from .weather import get_weather_data
 from .schemas import WeatherData
 
 
 app = FastAPI(title="Weather app", version="1.0.0")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (for development only)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
-
-templates = Jinja2Templates(directory="templates")
-
-
-@app.get("/api/weather/{city}", response_class=JSONResponse)
+@app.get("/api/weather/{city}")
 async def getWeather(city: str) -> WeatherData:
     data = await get_weather_data(city)
-    if not data:
-        return HTTPException(status_code=404)
+    if data is None:
+        raise HTTPException(status_code=404)
 
     return data
 
