@@ -36,4 +36,4 @@ jobs:
           flake8 . --count --exit-zero
 
       - name: Run tests
-              run: python3 -m pytest
+        run: python3 -m pytest
