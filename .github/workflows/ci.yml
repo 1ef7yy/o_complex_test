@@ -28,7 +28,6 @@ jobs:
           docker compose up -d &
           sleep 15
           curl -X GET http://localhost/api/weather/Moscow
-          pkill docker
 
       - name: Run linter
         run: |
