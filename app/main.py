@@ -18,13 +18,7 @@ app.add_middleware(
 @app.get("/api/weather/{city}")
 async def getWeather(city: str) -> WeatherData:
     data = await get_weather_data(city)
-    print(data)
     if data is None:
         raise HTTPException(status_code=404)
 
     return data
-
-
-@app.get("/test")
-async def test_route():
-    return {"code": 401}
