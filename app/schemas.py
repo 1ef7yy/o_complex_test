@@ -5,7 +5,9 @@ class WeatherData(BaseModel):
     """Данные о погоде"""
 
     temperature: list[float]
-    description: str
+    wind_speed: list[float]
+    relative_humidity: list[int]
+    weather_code: list[int]
 
 
 class Coordinates(BaseModel):

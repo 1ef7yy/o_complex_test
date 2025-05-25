@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master, dev ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,18 +23,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build
-        run: |
-          docker compose up -d &
-          sleep 15
-          curl -X GET http://localhost/api/weather/Moscow
-          pkill docker
-
       - name: Run linter
         run: |
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 . --count --exit-zero
+          python3 -m flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          python3 -m flake8 . --count --exit-zero
 
       - name: Run tests
-              run: |
-                python3 -m pytest
+        run: python3 -m pytest

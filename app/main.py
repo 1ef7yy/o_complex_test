@@ -22,8 +22,3 @@ async def getWeather(city: str) -> WeatherData:
         raise HTTPException(status_code=404)
 
     return data
-
-
-@app.get("/test")
-async def test_route():
-    return {"code": 401}
